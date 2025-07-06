@@ -1,0 +1,30 @@
+def calculate_price_with_tax(price, tax_rate):
+    """
+    商品金額に消費税を加えた金額を計算する関数
+    
+    引数:
+        price (float): 商品の税抜き価格
+        tax_rate (float): 消費税率（%）
+    
+    戻り値:
+        float: 消費税を加えた金額
+    """
+    # 消費税額を計算
+    tax_amount = price * (tax_rate / 100)
+    
+    # 税込み金額を計算
+    total_price = price + tax_amount
+    
+    # 税込み金額を返す
+    return total_price
+
+# 関数を呼び出し
+product_price = 110  # 商品金額
+tax_percentage = 10  # 消費税率（10%）
+
+result = calculate_price_with_tax(product_price, tax_percentage)
+
+# 結果を表示
+print(f"商品金額: {product_price}円")
+print(f"消費税率: {tax_percentage}%")
+print(f"税込み金額: {result}円")
