@@ -1,0 +1,18 @@
+# リストの定義
+array = ["水", "金", "地", "火", "木", "土", "天", "海", "冥"]
+
+# 1. for ループを使った実装（2回表示）
+print("--- for ループの結果（2回表示）---")
+for _ in range(2):  # 2回繰り返す
+    for item in array:
+        print(item)
+
+# 2. while ループを使った実装（2回表示）
+print("--- while ループの結果（2回表示）---")
+repeat = 0
+while repeat < 2:  # 2回繰り返す
+    i = 0
+    while i < len(array):
+        print(array[i])
+        i += 1
+    repeat += 1
