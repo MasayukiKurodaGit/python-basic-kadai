@@ -1,0 +1,25 @@
+price1 = 100
+price2 = 200
+
+# グローバルスコープで tax 変数を定義する方法
+tax = 1.1
+
+def total():
+    return price1 + price2
+
+print(total() * tax)
+
+
+-------------------------
+
+
+price1 = 100
+price2 = 200
+
+def total():
+    tax = 1.1
+    sum_price = price1 + price2
+    return sum_price, tax  # タプルとして返す
+
+sum_price, tax = total()
+print(sum_price * tax)
