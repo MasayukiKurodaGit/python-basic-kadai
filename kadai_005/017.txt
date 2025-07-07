@@ -1,0 +1,118 @@
+# グローバルスコープの変数
+ADULT_AGE = 20
+PERSON_TYPES = {
+    "adult": "大人",
+    "child": "子供"
+}
+
+def get_formatted_message(name, is_adult):
+    """
+    成人かどうかに基づいてメッセージを生成する関数
+    
+    引数:
+        name (str): 人の名前
+        is_adult (bool): 成人かどうかのフラグ
+    
+    戻り値:
+        str: フォーマットされたメッセージ
+    """
+    person_type = PERSON_TYPES["adult"] if is_adult else PERSON_TYPES["child"]
+    return f"{name}さんは{person_type}です。"
+
+
+class Human:
+    """
+    名前と年齢の属性を持つ人間を表すクラス
+    """
+    
+    def __init__(self, name, age):
+        """
+        コンストラクタ - 名前と年齢を初期化
+        
+        引数:
+            name (str): 人間の名前
+            age (int): 人間の年齢
+        """
+        self.name = name
+        self.age = age
+        # クラス内のプライベート変数（スコープの例）
+        self._person_data = {
+            "name": name,
+            "age": age,
+            "creation_info": "このインスタンスはHumanクラスから作成されました"
+        }
+    
+    def check_adult(self):
+        """
+        年齢に基づいて成人かどうかを判定し、結果を出力するメソッド
+        """
+        # ローカルスコープの変数
+        is_adult = self.age >= ADULT_AGE
+        
+        # 条件分岐
+        if is_adult:
+            message = get_formatted_message(self.name, True)
+        else:
+            message = get_formatted_message(self.name, False)
+        
+        print(message)
+        
+        # メソッドの追加情報としてディクショナリを返す
+        return {
+            "name": self.name,
+            "age": self.age,
+            "is_adult": is_adult
+        }
+
+
+# メイン処理
+def main():
+    # 複数のHumanインスタンスをリストに追加
+    people = [
+        Human("田中太郎", 25),
+        Human("佐藤花子", 17),
+        Human("鈴木一郎", 42),
+        Human("山田優", 19),
+        Human("伊藤健太", 20)
+    ]
+    
+    # 統計情報を保持するディクショナリ
+    stats = {
+        "total": len(people),
+        "adults": 0,
+        "children": 0
+    }
+    
+    print("===== 成人判定結果 =====")
+    
+    # 繰り返し処理でリストの各要素に対してcheck_adultメソッドを呼び出す
+    for i, person in enumerate(people):
+        print(f"[人物 {i+1}]")
+        result = person.check_adult()
+        
+        # 統計情報の更新
+        if result["is_adult"]:
+            stats["adults"] += 1
+        else:
+            stats["children"] += 1
+        
+        # 最後の人以外は区切り線を表示
+        if i < len(people) - 1:
+            print("-" * 30)
+    
+    # 統計情報の表示
+    print("\n===== 統計情報 =====")
+    print(f"総人数: {stats['total']}人")
+    print(f"大人: {stats['adults']}人")
+    print(f"子供: {stats['children']}人")
+    
+    # 大人と子供の割合を計算して表示
+    adult_ratio = (stats['adults'] / stats['total']) * 100
+    child_ratio = (stats['children'] / stats['total']) * 100
+    
+    print(f"大人の割合: {adult_ratio:.1f}%")
+    print(f"子供の割合: {child_ratio:.1f}%")
+
+
+if __name__ == "__main__":
+    main()
