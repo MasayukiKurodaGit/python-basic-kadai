@@ -1,0 +1,34 @@
+class Human:
+    """
+    名前と年齢の属性を持つ人間を表すクラス
+    """
+    
+    def __init__(self, name, age):
+        """
+        コンストラクタ - 名前と年齢を初期化します
+        
+        引数:
+            name (str): 人間の名前
+            age (int): 人間の年齢
+        """
+        self.name = name
+        self.age = age
+    
+    def printinfo(self):
+        """
+        名前と年齢を標準出力に表示するメソッド
+        """
+        print(f"名前: {self.name}")
+        print(f"年齢: {self.age}")
+
+
+# Humanクラスのインスタンスを作成し、変数に代入
+person1 = Human("田中太郎", 25)
+person2 = Human("鈴木花子", 30)
+
+# printinfoメソッドを使用して名前と年齢を出力
+print("===== 1人目の情報 =====")
+person1.printinfo()
+
+print("\n===== 2人目の情報 =====")
+person2.printinfo()
